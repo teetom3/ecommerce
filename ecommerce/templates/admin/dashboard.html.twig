@@ -1,0 +1,41 @@
+{# templates/admin/dashboard.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        body {
+            background: linear-gradient(to right, #7b4397, #dc2430);
+            color: white;
+        }
+        .dashboard-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .dashboard-container h1 {
+            margin-bottom: 30px;
+        }
+        .dashboard-container a {
+            display: inline-block;
+            margin: 20px;
+            padding: 15px 30px;
+            border-radius: 5px;
+            background-color: #dc2430;
+            color: white;
+            text-decoration: none;
+        }
+        .dashboard-container a:hover {
+            background-color: #7b4397;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="dashboard-container">
+        <h1>Admin Dashboard</h1>
+        <a href="{{ path('product_index') }}">Manage Products</a>
+        <a href="{{ path('user_index') }}">Manage Users</a>
+    </div>
+{% endblock %}

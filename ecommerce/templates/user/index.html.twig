@@ -1,0 +1,54 @@
+{# templates/user/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}User Index{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        body {
+            background: linear-gradient(to right, #7b4397, #dc2430);
+            color: white;
+        }
+        .user-table {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .btn {
+            margin-right: 5px;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <h1>User Index</h1>
+
+    <table class="table table-hover user-table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.roles | join(', ') }}</td>
+                <td>
+                    <a href="{{ path('user_show', {'id': user.id}) }}" class="btn btn-info">Show</a>
+                    <a href="{{ path('user_edit', {'id': user.id}) }}" class="btn btn-warning">Edit</a>
+                    <form method="post" action="{{ path('user_delete', {'id': user.id}) }}" style="display:inline-block">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('user_new') }}" class="btn btn-success">Create New User</a>
+{% endblock %}

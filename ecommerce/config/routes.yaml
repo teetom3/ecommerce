@@ -1,0 +1,76 @@
+controllers:
+    resource: ../src/Controller/
+    type: attribute
+# config/routes.yaml
+
+product_index:
+    path: /product
+    controller: App\Controller\ProductController::index
+    methods: GET
+
+product_new:
+    path: /product/new
+    controller: App\Controller\ProductController::new
+    methods: [GET, POST]
+
+product_show:
+    path: /product/{id}
+    controller: App\Controller\ProductController::show
+    methods: GET
+    requirements:
+        id: \d+
+
+product_edit:
+    path: /product/{id}/edit
+    controller: App\Controller\ProductController::edit
+    methods: [GET, POST]
+    requirements:
+        id: \d+
+
+product_delete:
+    path: /product/{id}
+    controller: App\Controller\ProductController::delete
+    methods: POST
+    requirements:
+        id: \d+
+
+
+# config/routes.yaml
+
+user_index:
+    path: /user
+    controller: App\Controller\UserController::index
+    methods: GET
+
+user_new:
+    path: /user/new
+    controller: App\Controller\UserController::new
+    methods: [GET, POST]
+
+user_show:
+    path: /user/{id}
+    controller: App\Controller\UserController::show
+    methods: GET
+    requirements:
+        id: \d+
+
+user_edit:
+    path: /user/{id}/edit
+    controller: App\Controller\UserController::edit
+    methods: [GET, POST]
+    requirements:
+        id: \d+
+
+user_delete:
+    path: /user/{id}
+    controller: App\Controller\UserController::delete
+    methods: POST
+    requirements:
+        id: \d+
+
+# config/routes.yaml
+
+admin_dashboard:
+    path: /admin
+    controller: App\Controller\AdminController::index
+    methods: GET

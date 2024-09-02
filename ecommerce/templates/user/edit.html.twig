@@ -1,0 +1,32 @@
+{# templates/user/edit.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit User{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        body {
+            background: linear-gradient(to right, #7b4397, #dc2430);
+            color: white;
+        }
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <h1>Edit User</h1>
+
+    {{ form_start(form) }}
+        <div class="form-container">
+            {{ form_widget(form) }}
+            <button class="btn btn-success">Save Changes</button>
+        </div>
+    {{ form_end(form) }}
+
+    <a href="{{ path('user_index') }}" class="btn btn-secondary">Back to list</a>
+{% endblock %}

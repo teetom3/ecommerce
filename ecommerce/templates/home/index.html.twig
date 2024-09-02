@@ -1,0 +1,58 @@
+{# templates/home/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Welcome to Our E-commerce Site{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        body {
+            background: linear-gradient(to right, #7b4397, #dc2430);
+            color: white;
+        }
+        .landing-text {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .products-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .product-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            width: 30%;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .product-card img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="landing-text">
+        <h1>Welcome to Our E-commerce Site</h1>
+        <p>Explore our wide range of products and find what you need!</p>
+        <a href="{{ path('app_login') }}" class="btn btn-primary">Login</a>
+    </div>
+
+    <div class="products-list">
+        {% for product in products %}
+            <div class="product-card">
+                <h2>{{ product.name }}</h2>
+                {% if product.image %}
+                    <img src="{{ asset('uploads/' ~ product.image) }}" alt="{{ product.name }}">
+                {% endif %}
+                <p>{{ product.description }}</p>
+                <p><strong>{{ product.price }} €</strong></p>
+                <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-info">View Product</a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
